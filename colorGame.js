@@ -1,7 +1,9 @@
 var colorNum = 6;
 var backgroundColor = "#232323";
+var h1bgColor = "steelblue";
 var colors;
 var pickedColor;
+
 var squares = document.getElementsByClassName("square");
 var colorDisplayed = document.getElementById("color-displayed");
 var messageDisplayed = document.querySelector("#message");
@@ -18,24 +20,22 @@ addSquareListener();
 resetButton.addEventListener("click", resetGame);
 
 easyButton.addEventListener("click", function () {
-    if (colorNum == 6) {
-        toggleLast3Display();
-        colorNum = 3;
-        easyButton.classList.toggle("selected");
-        hardButton.classList.toggle("selected");
-        resetGame();
-    }
+    changeMode(3);
   });
 
 hardButton.addEventListener("click", function () {
-    if (colorNum == 3) {
+    changeMode(6);
+  });
+
+function changeMode(num) {
+    if (colorNum != num) {
         toggleLast3Display();
-        colorNum = 6;
+        colorNum = num;
         easyButton.classList.toggle("selected");
         hardButton.classList.toggle("selected");
         resetGame();
     }
-  });
+}
 
 function resetGame() {
     colors = generateRandColors(colorNum);
@@ -44,8 +44,9 @@ function resetGame() {
     for (var i = 0; i < colorNum; i++) {
         squares[i].style.backgroundColor = colors[i];
     }
+    messageDisplayed.textContent = "";
     resetButton.textContent = "New Colors";
-    headH1.style.backgroundColor = backgroundColor;
+    headH1.style.backgroundColor = h1bgColor;
 }
 
 function addSquareListener() {
