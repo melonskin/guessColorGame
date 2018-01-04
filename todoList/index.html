@@ -6,16 +6,18 @@
     <title>Todo List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/todos.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <script type="text/javascript" src="assets/js/lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <div id="container">
-        <h1>TO-DO LIST</h1>
-        <input type="text" name="new" id="newTodo">
+        <h1>TO-DO LIST<i class="fa fa-plus plus-sign"></i></h1>
+        <input type="text" name="new" id="newTodo" placeholder="Add New Todo">
         <ul>
-            <li><span class="delete">X</span><span class="todoContent">li 1</span></li>
-            <li><span class="delete">X</span><span class="todoContent">li 2</span></li>
-            <li><span class="delete">X</span><span class="todoContent">li 3</span></li>
+            <li><span class="delete"><i class="fa fa-trash"></i></span><span class="todoContent">li 1</span></li>
+            <li><span class="delete"><i class="fa fa-trash"></i></span><span class="todoContent">li 2</span></li>
+            <li><span class="delete"><i class="fa fa-trash"></i></span><span class="todoContent">li 3</span></li>
         </ul>
     </div>
     <script type="text/javascript" src="assets/js/todos.js"></script>

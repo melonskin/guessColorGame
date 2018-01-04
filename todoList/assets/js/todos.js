@@ -8,7 +8,7 @@ $("ul").on("click", ".delete", function() {
     });
 });
 
-var liPrefix = '<li><span class="delete">X</span><span class="todoContent">';
+var liPrefix = '<li><span class="delete"><i class="fa fa-trash"></i></span><span class="todoContent">';
 var liEnd = '</span></li>';
 $("#newTodo").keypress(function(event) {
     if (event.which == 13) {
@@ -21,3 +21,7 @@ $("#newTodo").keypress(function(event) {
         $(this).val("");
     }
 });
+
+$(".plus-sign").click(function() {
+    $("#newTodo").fadeToggle();
+})
