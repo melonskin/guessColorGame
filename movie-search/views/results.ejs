@@ -1,0 +1,13 @@
+<h1>Results page</h1>
+<% if (data["Search"] === undefined) { %>
+    <h1>No result</h1>
+<% } else { %>
+<% data["Search"].forEach(function(item) { %>
+    <h2><%= item["Title"] %></h2>
+    <% if (item["Poster"] != "N/A") { %>
+        <img src=<%= item["Poster"] %>>
+    <% } %>
+    <br>
+    <% }); } %>
+    
+<a href="/">Seach again</a>
