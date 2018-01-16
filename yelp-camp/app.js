@@ -3,29 +3,17 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/yelp_camp", {useMongoClient: true});
+var Campground = require("./models/campground");
+// var Comment = require("./models/comment");
+
+var seedDB = require("./seeds");
+
+mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
-// var tmpCampgrounds = [
-//   {name: "name1", image: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Camp_4.jpg", desc: "Welcome"},
-//   {name: "name2", image: "http://www.travelbirbilling.com/wp-content/uploads/camp-pic1.jpg", desc: "Welcome"},
-//   {name: "name3", image: "http://www.camping.hr/cmsmedia/katalog/724/140-camp-turist-indian-tents.jpg", desc: "Welcome"}
-  
-// ];
-    
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    desc: String
-});
-
-var Campground = mongoose.model("Campground", campgroundSchema);
-
-// tmp add data
-// tmpCampgrounds.forEach(function(c) {
-//   createCampground(c); 
-// });
+// reset
+seedDB();
 
 function createCampground(item) {
     Campground.create(item, function(err, campground) {
@@ -71,11 +59,12 @@ app.get("/campgrounds/new", function(req, res) {
 //SHOW
 app.get("/campgrounds/:id", function(req, res) {
     var id = req.params.id;
-    Campground.findById(id, function(err, foundCamp) {
+    console.log(id);
+    Campground.findById(id).populate("comments").exec(function(err, foundCamp) {
         if (err) {
             console.log(err);
         } else {
-            console.log("Find a record");
+            console.log(foundCamp);
             res.render("show", {campground: foundCamp});
         }
     });
